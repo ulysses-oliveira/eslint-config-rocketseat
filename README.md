@@ -51,3 +51,21 @@ Inside `.eslintrc.json`
   "extends": "@rocketseat/eslint-config/node"
 }
 ```
+
+Inside `settings.json`
+```
+"[prisma]": {
+  "editor.formatOnSave": true
+},
+"editor.codeActionsOnSave": {
+  "source.fixAll.eslint": "explicit",
+  "source.addMissingImports": "explicit"
+}
+```
+
+Inside `settings.json`
+```
+"[language]": {
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+}
+```
