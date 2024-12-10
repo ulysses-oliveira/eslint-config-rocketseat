@@ -10,7 +10,7 @@
 
 ## Setup
 
-### React (with Next.js) or Node.js
+### React (with Next.js) or Node.js and settings for using the prettier-plugin-tailwindcss plugin
 Inside `.eslintrc.json`
 ```
 // Next.js
@@ -22,13 +22,34 @@ Inside `.eslintrc.json`
 
 {
   "extends": [
-    "@rocketseat/eslint-config/next", 
-    "next/core-web-vitals"
-  ]
+    "next/core-web-vitals",
+    "@rocketseat/eslint-config/next",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error"
+  }
 }
 ```
 
-## VS Code config
+Inside `package.json`
+```
+"overrides": {
+  "eslint-plugin-react-hooks": "5.1.0"
+}
+```
+
+Inside `.prettierrc`
+```
+{
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "plugins": ["prettier-plugin-tailwindcss"]
+}
+```
+
+### VS Code config
 Inside `settings.json`
 ```
 "[prisma]": {
@@ -45,26 +66,4 @@ Inside `settings.json`
 "[language]": {
   "editor.defaultFormatter": "dbaeumer.vscode-eslint"
 }
-```
-
-### Settings for using the prettier-plugin-tailwindcss plugin
-Inside `package.json`
-```
-"overrides": {
-  "eslint-plugin-react-hooks": "5.1.0"
-}
-```
-Inside `.eslintrc.json`
-```
-{
-  "extends": [
-    "next/core-web-vitals",
-    "@rocketseat/eslint-config/next",
-    "prettier"
-  ],
-  "rules": {
-    "prettier/prettier": "error"
-  }
-}
-
 ```
