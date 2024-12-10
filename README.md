@@ -11,6 +11,10 @@
 ## Setup
 
 ### React (with Next.js) or Node.js and settings for using the prettier-plugin-tailwindcss plugin
+Install dependencies:
+```
+npm i -D eslint @rocketseat/eslint-config
+```
 Inside `.eslintrc.json`
 ```
 // Next.js
