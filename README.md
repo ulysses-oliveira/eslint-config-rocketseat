@@ -10,44 +10,79 @@
 
 ## Setup
 
-### React (with Next.js)
-
+### React (with Next.js) or Node.js and settings for using the prettier-plugin-tailwindcss plugin
 Install dependencies:
 ```
 npm i -D eslint @rocketseat/eslint-config
 ```
-Inside `.eslintrc.json`
 ```
-{
-  "extends": [
-    "@rocketseat/eslint-config/next", 
-    "next/core-web-vitals"
-  ]
+npm i -D @typescript-eslint/parser @typescript-eslint/eslint-plugin
+```
+Inside `eslint.config.mjs`
+```
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
+import { FlatCompat } from '@eslint/eslintrc'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+})
+
+const eslintConfig = [
+  ...compat.extends(
+    'next/core-web-vitals',
+    '@rocketseat/eslint-config/next',
+    'prettier',
+  ),
+  {
+    files: ['*.ts', '*.tsx'],
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
+      project: './tsconfig.json', // Certifique-se de que o ESLint sabe onde está o tsconfig
+    },
+    rules: {
+      'prettier/prettier': 'error',
+    },
+  },
+]
+
+export default eslintConfig
+```
+
+Inside `package.json`
+```
+"overrides": {
+  "eslint-plugin-react-hooks": "5.1.0"
 }
 ```
 
-### React (without Next.js)
-
-Install dependencies:
+### VS Code config
+Inside `settings.json`
 ```
-npm i -D eslint @rocketseat/eslint-config
-```
-Inside `.eslintrc.json`
-```
-{
-  "extends": "@rocketseat/eslint-config/react"
+"[prisma]": {
+  "editor.formatOnSave": true
+},
+"editor.codeActionsOnSave": {
+  "source.fixAll.eslint": "explicit",
+  "source.addMissingImports": "explicit"
 }
 ```
 
-### Node.js
-
-Install dependencies:
+Inside `settings.json`
 ```
-npm i -D eslint @rocketseat/eslint-config
-```
-Inside `.eslintrc.json`
-```
-{
-  "extends": "@rocketseat/eslint-config/node"
+"[language]": {
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint"
 }
+```
+
+## Test commands
+```
+npx eslint .
+```
+
+```
+
 ```
